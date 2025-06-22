@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mastery International School Project</title>
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #ff4444;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background: #220000;
+      text-align: center;
+      padding: 15px;
+      box-shadow: 0 0 10px #ff4444;
+    }
+    h1 { color: #ff6666; margin: 0; }
+    #container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+      border: 2px solid #ff4444;
+      border-radius: 8px;
+      box-shadow: 0px 0px 20px #ff2222;
+    }
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    input {
+      background-color: #1a1a1a;
+      color: #ffdddd;
+    }
+    button {
+      background-color: #ff4444;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #response {
+      margin-top: 20px;
+      background: #1a0a0a;
+      color: #ffcccc;
+      padding: 15px;
+      border-radius: 5px;
+      min-height: 60px;
+    }
+    .typing { font-style: italic; color: #777; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Mastery International School Project</h1>
+  </header>
+
+  <div id="container">
+    <h2>Ask "Science Fair Project" your question:</h2>
+    <input type="text" id="question" placeholder="Type your question..." />
+    <button onclick="getAnswer()">Ask</button>
+    <div id="response"></div>
+  </div>
+
+  <footer>
+    Science Fair Project by Yaseen Rami
+  </footer>
+
+  <script>
+    function getAnswer() {
+      const q = document.getElementById("question").value.trim().toLowerCase();
+      const r = document.getElementById("response");
+      if (!q) return r.innerText = "❗ Please enter a question.";
+      r.innerHTML = "<span class='typing'>Science Fair Project is thinking...</span>";
+      setTimeout(() => {
+        const patterns = [
+          {words: ["fire", "burn", "flame", "couch"], reply: "🔥 Leave immediately. Call emergency services. Do not try to put it out yourself."},
+          {words: ["choke"], reply: "🚨 Perform the Heimlich maneuver. Call 911 if it doesn’t stop."},
+          {words: ["earthquake", "quake", "shake"], reply: "🌍 Drop, cover, and hold on. Stay away from windows."},
+          {words: ["faint"], reply: "⚠️ Lay them down, elevate legs, and call for help."},
+          {words: ["seizure"], reply: "🧠 Clear area, do not hold them down, time the seizure, and call 911."},
+          {words: ["blood", "bleed", "cut"], reply: "🩸 Apply pressure with clean cloth. Call for help if it doesn’t stop."},
+          {words: ["heart", "chest pain"], reply: "❤️ Call 911. Help them sit down and stay calm. CPR if needed."},
+          {words: ["gas", "leak"], reply: "💨 Evacuate the area. Do not use electronics. Call emergency services outside."},
+          {words: ["drown"], reply: "🌊 Call 911. If trained and safe, start CPR immediately."},
+          {words: ["poison"], reply: "☠️ Call poison control or emergency services. Do not induce vomiting."},
+          {words: ["unconscious"], reply: "🛌 Tap to check response. Call emergency services right away."},
+          {words: ["ai", "artificial"], reply: "🤖 AI means Artificial Intelligence — machines that can think like humans."},
+          {words: ["sky", "blue"], reply: "☁️ Sky is blue due to Rayleigh scattering of sunlight."},
+          {words: ["photosynthesis", "plant"], reply: "🌱 Plants use sunlight, CO₂, and water to make their food."},
+          {words: ["gravity"], reply: "🌍 Gravity is the force that pulls objects toward Earth."},
+          {words: ["lightbulb", "edison"], reply: "💡 Thomas Edison invented the practical lightbulb in 1879."},
+          {words: ["climate"], reply: "🌡️ Climate change refers to long-term shifts in temperature caused by human activity."},
+          {words: ["speed", "light"], reply: "⚡ Speed of light is about 299,792,458 m/s."},
+          {words: ["h2o", "water"], reply: "💧 Water is made of two hydrogen atoms and one oxygen atom — H₂O."},
+          {words: ["brain"], reply: "🧠 The brain controls thoughts, emotions, and body functions."},
+          {words: ["electricity"], reply: "⚡ Electricity is the flow of electrons used to power devices."}
+        ];
+
+        let response = "🤔 I’m not sure, but try rephrasing or contact emergency services if urgent.";
+
+        for (let item of patterns) {
+          for (let word of item.words) {
+            if (q.includes(word)) {
+              response = item.reply;
+              break;
+            }
+          }
+          if (response !== "🤔 I’m not sure, but try rephrasing or contact emergency services if urgent.") break;
+        }
+
+        r.innerText = response;
+      }, 1200);
+    }
+  </script>
+
+</body>
+</html>
